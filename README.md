@@ -8,13 +8,13 @@ This project provides example code to set up a generic flywheel gear workflow th
 
 The json file must contain an `analysis` dictionary, where all workflow steps are detailed. Here, each analysis should be it's own `JSON` object and are ordered in a list as shown below.
 ```
-    "__comment__": "example template",
-    "analysis": 
-        [
-            {
-              <gear template descriptors>
-            }
-        ]
+"__comment__": "example template",
+"analysis": 
+    [
+        {
+          <gear template descriptors>
+        }
+    ]
 
 ```
 Each "workflow stage" should contain instructions to run a single analysis, include the gear name, version, inputs, config, tags, label and conditions.
@@ -25,17 +25,17 @@ Each "workflow stage" should contain instructions to run a single analysis, incl
 ##### __`comment`__ 
 __(optional)__ add description of workflow stage or any other relevant comments 
 ```
-    "__comment__": "step 1: curate session using bids reproin naming convention"
+"__comment__": "step 1: curate session using bids reproin naming convention"
 ```
 ##### __`gear-name`__
 __(required)__ flywheel gear name used to run analysis
 ```
-    "gear-name": "curate-bids"
+"gear-name": "curate-bids"
 ```
 ##### __`gear-version`__
 __(optional)__ flywheel gear version used in current analysis, if this key is excluded, the most recent version of the gear is used.
 ```
-    "gear-version":"2.1.3_1.0.7"
+"gear-version":"2.1.3_1.0.7"
 ```
 
 ##### __`inputs`__
@@ -46,39 +46,39 @@ Two options can be used to point to a file name: (1) `regex` uses python's regul
 `optional` is an additional flag that is used to either log and error and exit if no file match is found, or proceed without a file match. This can be useful for 'generic' files such as `.bidsignore` which may only be present in some projects.
 ```
 "inputs": {
-            "template": {
-                "regex": "-reproin-template.json$",
-                "parent-container": "project",
-                "optional": true
-            },
-            "freesurfer-license": {
-              "value": "license.txt"
-              "parent-container": "project",
-              "optional": false
-            }
-        },
+    "template": {
+        "regex": "-reproin-template.json$",
+        "parent-container": "project",
+        "optional": true
+    },
+    "freesurfer-license": {
+      "value": "license.txt"
+      "parent-container": "project",
+      "optional": false
+    }
+},
 ```
 ##### __`config`__
 __(optional)__ if configuration settings differ from the gear defaults, the configuration for the current analysis is detailed here. The configurations should be written exactly as they appear in the gear info, and must be formated as a `JSON` object.
 ```
 "config": {
-            "reset": true,
-            "intendedfor_regexes": ".*fmap.* nii",
-            "use_or_save_config": "Ignore Config File"
-        },
+    "reset": true,
+    "intendedfor_regexes": ".*fmap.* nii",
+    "use_or_save_config": "Ignore Config File"
+},
 ```
 
 
 ##### __`tags`__
 __(optional)__ if any tags should be added to the analysis, enter them as a list of strings here
 ```
-    "tags": ["hpc"]
+"tags": ["hpc"]
 ```
 
 ##### __`custom-label`__
 __(optional)__ add a custom label for the current analysis. Default label is the gear name followed by current date and time.
 ```
-    "custom-label": "completeness-curator"
+"custom-label": "completeness-curator"
 ```
 
 #### Other Options - Setting `RUN` conditions
@@ -90,16 +90,16 @@ Each Prerequesite `JSON` object should contain the following: (1) `prereq-gear` 
 
 ```
 "prerequisites":  [
-        {
-            "prereq-gear": "hierarchy-curator",
-            "prereq-analysis-label": "events-curator",
-            "prereq-complete-analysis":"any"
-        },
-        {
-            "prereq-gear": "bids-fmriprep",
-            "prereq-complete-analysis":"any"
-        }
-    ],
+    {
+        "prereq-gear": "hierarchy-curator",
+        "prereq-analysis-label": "events-curator",
+        "prereq-complete-analysis":"any"
+    },
+    {
+        "prereq-gear": "bids-fmriprep",
+        "prereq-complete-analysis":"any"
+    }
+],
 ```
 
 ##### __`count-failures`__
