@@ -43,7 +43,13 @@
             "tags": [],
             "custom-label": "completeness-curator",
             "count-failures": 1,
-            "prerequisites":  {"curate-bids":"any"},
+            "prerequisites":  
+            [
+                {
+                    "prereq-gear": "curate-bids",
+                    "prereq-complete-analysis":"any"
+                }
+            ],
             "sleep_seconds": 30
         },
         {
@@ -75,7 +81,18 @@
             },
             "tags": ["hpc"],
             "count-failures": 2,
-            "prerequisites":  {"curate-bids":"any", "hierarchy-curator": "any"},
+            "prerequisites":  
+            [
+                {
+                    "prereq-gear": "curate-bids",
+                    "prereq-complete-analysis":"any"
+                },
+                {
+                    "prereq-gear": "hierarchy-curator",
+                    "prereq-analysis-label": "completeness-curator",
+                    "prereq-complete-analysis":"any"
+                },
+            ],
             "sleep_seconds": 30,
             "completeness-tags": ["Run Downstream Analyses"]
         }

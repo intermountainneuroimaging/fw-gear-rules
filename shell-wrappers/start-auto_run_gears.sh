@@ -18,4 +18,4 @@ conda activate flywheel
 # Launch auto-gear set (uses gear template stored in flywhel project)
 # Using "timeout" prevents the script hanging when launched automatically.
 # This time limit may need to be adjusted based on the speed of your system.
-timeout 300m python session_run.py "$@" 2>&1 | tee -a "$logfile"
+timeout 300m python run_autoworkflow.py "$@" 2>&1 | tee -a "$logfile"
